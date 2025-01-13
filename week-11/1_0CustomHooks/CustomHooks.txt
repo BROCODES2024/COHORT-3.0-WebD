@@ -1,0 +1,62 @@
+https://petal-estimate-4e9.notion.site/React-Part-1-1177dfd1073580069172fc54e33929c0
+what makes any function a hook?
+ans: use
+
+//custom hook 1
+import { useState } from "react";
+import "./App.css";
+//here use counter is a custom hook it makes it much easier to use multiple times
+function useCounter() {
+  const [count, setCount] = useState(0);
+  function increaseCount() {
+    setCount((count) => count + 1);
+  }
+  return {
+    count: count,
+    increaseCount: increaseCount,
+  };
+}
+
+function App() {
+  const { count, increaseCount } = useCounter();
+
+  return (
+    <div>
+      <button onClick={increaseCount}>Increase{count}</button>
+    </div>
+  );
+}
+
+export default App;
+
+//in react we cant make the first argument in useeffect as an async function
+
+//useFetch hook
+import { useState, useEffect } from 'react';
+
+export const useFetch = (url: string) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(url);
+        const result = await response.json();
+        setData(result);
+      } catch (err) {
+        setError(err as Error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [url]);
+
+  return { data, loading, error };
+};
+
+https://usehooks.com/ some custom hooks

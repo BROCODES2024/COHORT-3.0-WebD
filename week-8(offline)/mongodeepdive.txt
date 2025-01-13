@@ -1,0 +1,23 @@
+https://100x-b-mcdn.akamai.net.in/cohort-2-slides/Week_4.3.pdf
+
+Good question to have at this point
+Why don’t we let the user hit the database directly?
+Database
+Give me all posts for myself
+What extra does the http server provide exactly?
+1. Databases were are created using protocols that browsers don’t understand
+2. Databases don’t have granual access as a rst class citizen. Very hard to do user specic access in them
+3. There are some databases (rebase) that let you get rid of the http server and try their best to provide granola access
+
+Databases usually allow access to 4 primitives
+1. Create Data
+2. Read Data
+3. Update Data
+4. Delete Data
+Popularly known as CRUD
+
+In mongoose, first you have to define the schema
+This sounds counter intuitive since mongodb is schemaless?
+That is true, but mongoose makes you dene schema for things like autocompletions/
+Validating data before it goes in the DB to make sure you’re doing things right
+Schemaless Dbs can be very dangerous, using schemas in mongo makes it slightly less dangerous

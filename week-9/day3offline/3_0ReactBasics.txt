@@ -1,0 +1,10 @@
+https://petal-estimate-4e9.notion.site/React-Part-1-1177dfd1073580069172fc54e33929c0
+
+go through these slides they make it clear to understand
+component doest rerender if we dont use a state variable
+react only rerenders state varaibles
+
+for better notes look at:
+https://github.com/Bharat2044/100xDevs-Cohort3-WebDev-and-Devops
+or
+https://github.com/irohandev/WebDev-DevOps-Cohort-3.0

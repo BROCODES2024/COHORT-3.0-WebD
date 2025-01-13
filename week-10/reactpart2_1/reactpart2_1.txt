@@ -1,0 +1,197 @@
+https://petal-estimate-4e9.notion.site/React-Part-1-1177dfd1073580069172fc54e33929c0
+
+15-19/20
+
+Single Page Applications (SPAs) are web applications that load a single HTML page and dynamically update that page as the user interacts with the app. 
+This approach allows for a smoother user experience compared to traditional multi-page applications (MPAs), where each interaction often requires a full page reload.
+
+if we use href it lods while we move to new page so its no more a single page application so its a bad way to use hrefs
+a better way is to use Link like This
+<Link to={"/neet/class11"}>Class 11</Link>
+Link should always be inside the BrowserRouter
+now after using links u wonts see the loader in tab name 
+before using Link first import it 
+import { BrowserRouter, Routes, Route, Link ,useNavigate} from "react-router-dom";
+
+we can also create a page where if the route is not present we can show error 404
+this can be done by using route as * so in case when we access /abjasdbj or some random route it shows error 404
+
+code so far:
+import "./App.css";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+} from "react-router-dom";
+
+function App() {
+  return (
+    <div>
+      <BrowserRouter>
+        <Link to={"/"}>Allen</Link>
+        <br />
+        <Link to={"/neet/class11"}>Class 11</Link>
+        <br />
+        <Link to={"/neet/class12"}>Class 12</Link>
+        <Routes>
+          <Route path="/neet/class11" element={<Class11Program />} />
+          <Route path="/neet/class12" element={<Class12Program />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="*" element={<Random />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
+function Random() {
+  return <div>Page doesn't exist</div>;
+}
+function Landing() {
+  return <div>Welcome!</div>;
+}
+
+function Class11Program() {
+  const navigate = useNavigate();
+  function redirectuser() {
+    navigate("/");
+  }
+  return (
+    <div>
+      Welcome to class 11!
+      <button onClick={redirectuser}>Going back to landing page!</button>
+    </div>
+  );
+}
+
+function Class12Program() {
+  const navigate = useNavigate();
+  function redirectuser() {
+    navigate("/");
+  }
+  return (
+    <div>
+      Welcome to class 12!
+      <button onClick={redirectuser}>Going back to landing page!</button>
+    </div>
+  );
+}
+
+export default App;
+
+
+code after using outlet
+
+
+import "./App.css";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+  Outlet,
+} from "react-router-dom";
+
+function App() {
+  return (
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route path="/neet/class11" element={<Class11Program />} />
+            <Route path="/neet/class12" element={<Class12Program />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="*" element={<Random />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
+function Layout() {
+  return (
+    <div style={{ height: "100vh", background: "grey" }}>
+      <Header />
+      <div style={{ height: "90vh", background: "red" }}>
+        <Outlet />
+      </div>
+      footer
+    </div>
+  );
+}
+function Header() {
+  return (
+    <div>
+      <Link to={"/"}>Allen</Link>
+      <br />
+      <Link to={"/neet/class11"}>Class 11</Link>
+      <br />
+      <Link to={"/neet/class12"}>Class 12</Link>
+    </div>
+  );
+}
+function Random() {
+  return <div>Page doesn't exist</div>;
+}
+function Landing() {
+  return <div>Welcome!</div>;
+}
+
+function Class11Program() {
+  const navigate = useNavigate();
+  function redirectuser() {
+    navigate("/");
+  }
+  return (
+    <div>
+      Welcome to class 11!
+      <button onClick={redirectuser}>Going back to landing page!</button>
+    </div>
+  );
+}
+
+function Class12Program() {
+  const navigate = useNavigate();
+  function redirectuser() {
+    navigate("/");
+  }
+  return (
+    <div>
+      Welcome to class 12!
+      <button onClick={redirectuser}>Going back to landing page!</button>
+    </div>
+  );
+}
+
+export default App;
+
+
+useRef()
+it is used to get reference of an element so that we dont need to use document.getelementbyid() etc etc
+
+try hitting the submit button and see the change
+import { useRef } from "react";
+import "./App.css";
+
+function App() {
+  const inputref = useRef();
+
+  function focusoninput() {
+    inputref.current.focus();
+  }
+  return (
+    <div>
+      <input ref={inputref} type={"text"} />
+      <input type={"text"} />
+      <button onClick={focusoninput}>Submit</button>
+    </div>
+  );
+}
+
+export default App;
+
+### What is `useRef`?
+
+In React, `useRef` is a hook that provides a way to create a **reference** to a value or a DOM element that persists across renders but **does not trigger a re-render** when the value changes.

@@ -1,0 +1,5 @@
+https://petal-estimate-4e9.notion.site/React-Part-1-1177dfd1073580069172fc54e33929c0
+8-14 in slides
+everyone shifted from class based to function based in React
+
+<> </> => fragments

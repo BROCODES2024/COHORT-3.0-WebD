@@ -1,0 +1,33 @@
+https://petal-estimate-4e9.notion.site/React-Part-1-1177dfd1073580069172fc54e33929c0
+20-23
+
+Prop drilling occurs when you need to pass data from a higher-level component down to a lower-level component that is several layers deep in the component tree. 
+
+This often leads to the following issues:
+
+- **Complexity:** You may have to pass props through many intermediate components that don’t use the props themselves, just to get them to the component that needs them.
+- **Maintenance:** It can make the code harder to maintain, as changes in the props structure require updates in multiple components.
+
+API: Application Programming Interface
+Let’s think of an API as a friendly messenger between two things that need to talk to each other. Here’s a fun way to explain it:
+
+Imagine you’re at a restaurant. You (the customer) want some food, but you don’t go into the kitchen to make it yourself. Instead, you tell the waiter (the messenger) what you want, and the waiter takes your order to the chef in the kitchen. Then, the chef prepares the food and gives it back to the waiter, who brings it to you.
+
+In the same way, an API (Application Programming Interface) is like that waiter. It helps two programs, apps, or websites talk to each other and share information.
+# Context API
+
+ The Context API is a powerful feature in React that enables you to manage state across your application more effectively, especially when dealing with deeply nested components.
+
+The Context API provides a way to share values (state, functions, etc.) between components without having to pass props down manually at every level.
+
+### Jargon
+
+- **Context**: This is created using `React.createContext()`. It serves as a container for the data you want to share.
+- **Provider**: This component wraps part of your application and provides the context value to all its descendants. Any component that is a child of this Provider can access the context.
+- **Consumer**: This component subscribes to context changes. It allows you to access the context value (using `useContext`  hook)
+
+## What context does, and what it doesn’t
+
+The Context API primarily addresses the issue of prop drilling by allowing you to share state across your component tree without needing to pass props through every level.
+
+It doesn’t optimise renders in your application, which becomes important if/when your application becomes bigger
