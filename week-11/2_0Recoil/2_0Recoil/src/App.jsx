@@ -35,7 +35,7 @@ function Increase() {
     </div>
   );
 }
-function Decrease() {
+const Decrease = memo(() => {
   const setcount = useSetRecoilState(counterAtom);
 
   function Decreasecnt() {
@@ -46,6 +46,6 @@ function Decrease() {
       <button onClick={Decreasecnt}>Decrease</button>
     </div>
   );
-}
+});
 
 export default App;

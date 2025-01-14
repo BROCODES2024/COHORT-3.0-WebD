@@ -89,3 +89,38 @@ function Decrease() {
 }
 
 export default App;
+
+useRecoilValue(this is a getter hook)
+useSetRecoilState(this is a setter hook)
+
+in react when a parent re renders all its children re renders even if u dont send the props ###we can avoid this using memo###
+
+to use memo:
+
+without memo function looks like this:
+function Decrease() {
+  const setcount = useSetRecoilState(counterAtom);
+
+  function Decreasecnt() {
+    setcount((c) => c - 1);
+  }
+  return (
+    <div>
+      <button onClick={Decreasecnt}>Decrease</button>
+    </div>
+  );
+}
+//with memo
+const Decrease = memo(() => {
+  const setcount = useSetRecoilState(counterAtom);
+
+  function Decreasecnt() {
+    setcount((c) => c - 1);
+  }
+  return (
+    <div>
+      <button onClick={Decreasecnt}>Decrease</button>
+    </div>
+  );
+});
+
