@@ -1,2 +1,91 @@
 slides:
 https://petal-estimate-4e9.notion.site/Recoil-1247dfd107358016bdb1ea1bb52e4a68?pvs=74
+
+# Introducing recoil
+
+A state management library for React that provides a way to manage global state with fine-grained control.
+
+Recoil minimizes unnecessary renders by only re-rendering components that depend on changed atoms
+
+The performance of a React app is measured by the number of re-renders. Each re-render is expensive, and you should aim to minimise it.
+
+## Key concepts in recoil
+
+- **Atoms:** Units of state that can be read from and written to from any component.
+- **Selectors:** Functions that derive state from atoms or other selectors, allowing for computed state.
+
+Just like express has routers , recoil has atoms
+
+How to use recoil stepwise:
+Add recoil as a dependency
+npm install recoil
+​
+Wrap the app inside a RecoilRoot(just like we did in Contextapi)
+import { RecoilRoot } from "recoil";
+function App() {
+
+  return (
+    <RecoilRoot>
+      <Counter />
+    </RecoilRoot>
+  )
+}
+
+Create a counter atom(this should be stored in a seperate folder inside src )(follow this structure: src=>store=>atoms=>counter.js)
+const counter = atom({
+	key: "counter",
+	default: 0
+})
+
+//code 
+import { useState } from "react";
+import "./App.css";
+import { RecoilRoot, atom, useRecoilValue, useSetRecoilState } from "recoil";
+import { counterAtom } from "./store/atoms/counter";
+
+function App() {
+  return (
+    <RecoilRoot>
+      <Counter />
+    </RecoilRoot>
+  );
+}
+function Counter() {
+  return (
+    <div>
+      <Curcount />
+      <Increase />
+      <Decrease />
+    </div>
+  );
+}
+function Curcount() {
+  const count = useRecoilValue(counterAtom);
+  return <div>{count}</div>;
+}
+function Increase() {
+  const setcount = useSetRecoilState(counterAtom);
+
+  function Increasecnt() {
+    setcount((c) => c + 1);
+  }
+  return (
+    <div>
+      <button onClick={Increasecnt}>Increase</button>
+    </div>
+  );
+}
+function Decrease() {
+  const setcount = useSetRecoilState(counterAtom);
+
+  function Decreasecnt() {
+    setcount((c) => c - 1);
+  }
+  return (
+    <div>
+      <button onClick={Decreasecnt}>Decrease</button>
+    </div>
+  );
+}
+
+export default App;

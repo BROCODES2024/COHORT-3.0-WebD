@@ -3,3 +3,16 @@ https://petal-estimate-4e9.notion.site/React-Part-1-1177dfd1073580069172fc54e339
 everyone shifted from class based to function based in React
 
 <> </> => fragments
+we cant return multiple items (div,components etc in react though we can wrap all of them inside a single div we cant do like below)
+return(
+    <div></div>
+    <div></div>
+)
+but we can do this
+return(
+    <div>
+        <div></div>
+    </div>
+)
+
+if we dont want div as parent element and want to have multiple childs without parent div we can use fragments
