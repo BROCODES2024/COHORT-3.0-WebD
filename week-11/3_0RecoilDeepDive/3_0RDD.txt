@@ -1,0 +1,283 @@
+slides: https://drive.google.com/file/d/1DKFKbl35icY1LD7tIt7jGawpd7UZtZT1/view?pli=1    
+
+userecoilvalue => similar to count
+usesetrecoilstate => similar to setcount
+userecoilstate =>similar to usestate
+
+selector is derived from other atoms
+look at selector syntax in atoms.js
+In Recoil, you use selectors when you need to derive new data based on existing state stored in atoms
+we use selector instead of memo because in future if we want something which is sum of jobscount+totalcount(selector) then we can use the prev selector
+
+//code for app.jsx
+import { RecoilRoot, useRecoilValue } from "recoil";
+import {
+  JobsAtom,
+  MessagingAtom,
+  networkAtom,
+  notificationsAtom,
+  totalcount,
+  totalcountselector,
+} from "./atoms";
+import { useMemo } from "react";
+
+function App() {
+  return (
+    <RecoilRoot>
+      <MainApp />
+    </RecoilRoot>
+  );
+}
+function MainApp() {
+  const networkcount = useRecoilValue(networkAtom);
+  const jobscount = useRecoilValue(JobsAtom);
+  const messagingcount = useRecoilValue(MessagingAtom);
+  const notificationscount = useRecoilValue(notificationsAtom);
+  const totalcount = useRecoilValue(totalcountselector);
+  //instead of using selector in this case for getting total count
+  // we can use memo
+  //here we are using dependencyarray so that totalcount updates if any of the variables present in the dep array changes
+  // const totalcount = useMemo(() => {
+  // return networkcount + jobscount + notificationscount + messagingcount;
+  // }, [networkcount, jobscount, notificationscount, messagingcount]);
+  return (
+    <>
+      <button>Home</button>
+
+      <button>My Network ({networkcount >= 100 ? "99+" : networkcount})</button>
+      <button>Jobs ({jobscount})</button>
+      <button>Messaging ({messagingcount}) </button>
+      <button>Notifications ({notificationscount}) </button>
+
+      <button>Me ({totalcount}) </button>
+    </>
+  );
+}
+export default App;
+
+//code for atoms.js
+import { get } from "mongoose";
+import { atom, selector } from "recoil";
+
+export const networkAtom = atom({
+  key: "networkatom",
+  default: 102,
+});
+export const JobsAtom = atom({
+  key: "jobsatom",
+  default: 1,
+});
+export const MessagingAtom = atom({
+  key: "messagingatom",
+  default: 7,
+});
+export const notificationsAtom = atom({
+  key: "notificationsatom",
+  default: 12,
+});
+export const totalcountselector = selector({
+  key: "totalcount",
+  get: ({ get }) => {
+    const networkcount = get(networkAtom);
+    const jobscount = get(JobsAtom);
+    const messagingcount = get(MessagingAtom);
+    const notificationscount = get(notificationsAtom);
+    return networkcount + jobscount + messagingcount + notificationscount;
+  },
+});
+
+
+//Asynchronous data queries (values come from backend)
+//code
+//app.jsx
+import "./App.css";
+import {
+  RecoilRoot,
+  useRecoilState,
+  useRecoilValue,
+  useSetRecoilState,
+} from "recoil";
+import { notifications, totalNotificationSelector } from "./atoms";
+import { useEffect } from "react";
+import axios from "axios";
+
+function App() {
+  return (
+    <RecoilRoot>
+      <MainApp />
+    </RecoilRoot>
+  );
+}
+
+function MainApp() {
+  const [networkCount, setNetworkCount] = useRecoilState(notifications);
+  const totalNotificationCount = useRecoilValue(totalNotificationSelector);
+
+  useEffect(() => {
+    // fetch
+    axios.get("https://sum-server.100xdevs.com/notifications").then((res) => {
+      setNetworkCount(res.data);
+    });
+  }, []);
+
+  return (
+    <>
+      <button>Home</button>
+
+      <button>
+        My network (
+        {networkCount.networks >= 100 ? "99+" : networkCount.networks})
+      </button>
+      <button>Jobs {networkCount.jobs}</button>
+      <button>Messaging ({networkCount.messaging})</button>
+      <button>Notifications ({networkCount.notifications})</button>
+
+      <button>Me ({totalNotificationCount})</button>
+    </>
+  );
+}
+
+export default App;
+
+//code for atom.js
+import { atom, selector } from "recoil";
+
+//async data queries
+//this is how we get data from the backend using recoil we cant directly make an atom async but a selector inside an atom can be async
+export const notifications = atom({
+  key: "networkAtom",
+  default: selector({
+    key: "networkatomselector",
+    get: async () => {
+      const res = await axios.get("//paste some api request here");
+      return res.data;
+    },
+  }),
+});
+
+export const totalNotificationSelector = selector({
+  key: "totalNotificationSelector",
+  get: ({ get }) => {
+    const allNotifications = get(notifications);
+    return (
+      allNotifications.network +
+      allNotifications.jobs +
+      allNotifications.notifications +
+      allNotifications.messaging
+    );
+  },
+});
+
+//atoms family
+when do use atoms family?
+imagine a todo app where users might send any data and the id keep changing, 
+in that case we cant keep creating new items everytime thats the reason where we use atomFamily
+atomFamily gives us a newatom everytime a newatom is required based on the input
+it basically does our work of creating new atom for different inputs
+
+//code
+//app.jsx
+import { RecoilRoot, useRecoilValue } from "recoil";
+import { todosatomfamily } from "./atoms";
+
+function App() {
+  return (
+    <RecoilRoot>
+      <Todo id={1} />
+      <Todo id={2} />
+    </RecoilRoot>
+  );
+}
+function Todo({ id }) {
+  const currentTodo = useRecoilValue(todosatomfamily(id));
+  return (
+    <>
+      {currentTodo.title}
+      {currentTodo.description}
+    </>
+  );
+}
+export default App;
+
+
+//atoms.js
+import { atomFamily } from "recoil";
+import { TODOS } from "./TODOS.JS";
+export const todosatomfamily = atomFamily({
+  key: "todoatomfamily",
+  default: (id) => {
+    //map,filter
+    return TODOS.find((x) => x.id === id);
+  },
+});
+const todoAtom = atom({
+  key: "todoAtom",
+  default: 1,
+});
+
+
+//todos.js
+export const TODOS = [
+  {
+    id: 1,
+    title: "Go to Gym",
+    description: "Hit the gym",
+  },
+  {
+    id: 2,
+    title: "hello",
+    description: "hello world",
+  },
+];
+
+//selector family
+//if we want async call we need selector
+//example : in the todo app if we need to get todos from backend we need a selectorfamily
+
+we use selector inside an atom for async call
+similarly we need to use selectorfamily inside atomFamily for async calls
+//code
+//app.jsx
+import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil";
+import { todosatomfamily } from "./atoms";
+
+function App() {
+  return (
+    <RecoilRoot>
+      <Todo id={1} />
+      <Todo id={2} />
+    </RecoilRoot>
+  );
+}
+function Todo({ id }) {
+  const [todo, settodo] = useRecoilState(todosatomfamily(id));
+  return (
+    <>
+      {currentTodo.title}
+      {currentTodo.description}
+    </>
+  );
+}
+export default App;
+
+//atoms.js
+import { atomFamily } from "recoil";
+import { TODOS } from "./TODOS.JS";
+export const todosatomfamily = atomFamily({
+  key: "todoatomfamily",
+  get:
+    (id) =>
+    async ({ get }) => {
+      const res = await axios.get("");
+      return res.data.todo;
+    },
+});
+const todoAtom = atom({
+  key: "todoAtom",
+  default: 1,
+});
+
+
+//userecoilstatelodable this shows loading in console 
+//this can be used instead of userecoilstate
+similarly we can use useRecoilValueLoadable
