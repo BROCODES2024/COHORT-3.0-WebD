@@ -1,7 +1,10 @@
 slides: https://www.canva.com/design/DAGVU1RXwn0/EBNpEgL7LxVUQd6ThorItA/edit
 -D means devdependencies
-use tailwind:
+use tailwind(old version):
 npm i tailwindcss@3.4.17
+
+https://tailwindcss.com/docs/guides/vite
+
 <div className="sm:bg-blue-300 bg-red-300">hi</div>
 this means after sm breakpoint it changes to blue but normally it is red
 
@@ -27,3 +30,10 @@ function App() {
 }
 
 export default App;
+
+
+px - horizontal padding 
+py -vertical padding
+h-screen (will take full screen height)
+
+all the components we make before hand are primitives 
