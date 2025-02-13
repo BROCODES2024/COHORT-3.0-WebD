@@ -1,3 +1,5 @@
+slides: https://projects.100xdevs.com/tracks/6SbPPXGkG8QKFOTW9BmL/ts-8
+
 Step 3 - The tsc compiler
 Let’s bootstrap a simple Typescript Node.js application locally on our machines
  

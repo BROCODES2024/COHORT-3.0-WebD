@@ -1,3 +1,5 @@
+slides: https://projects.100xdevs.com/tracks/6SbPPXGkG8QKFOTW9BmL/ts-8
+
 Step 5 - The tsconfig file
 The tsconfig file has a bunch of options that you can change to change the compilation process.
 Some of these include
