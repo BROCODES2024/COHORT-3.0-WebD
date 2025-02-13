@@ -1,0 +1,58 @@
+Step 4 - Basic Types in TypeScript
+we can also use any in Typescript
+example
+let x: any = 1;
+x = true;
+Typescript provides you some basic types
+number, string, boolean, null, undefined.
+Let’s create some simple applications using these types - 
+Problem 1 - Hello world
+💡
+Thing to learn - How to give types to arguments of a function
+Write a function that greets a user given their first name. 
+Argument - firstName
+Logs - Hello {firstName}
+Doesn’t return anything
+solution:
+function greet(firstName: string) {
+    console.log("Hello " + firstName);
+}
+
+greet("harkirat");
+
+Problem 2 - Sum function
+💡
+Thing to learn - How to assign a return type to a function
+Write a function that calculates the sum of two functions
+solution:
+function sum(a: number, b: number): number {
+    return a + b;
+}
+
+console.log(sum(2, 3));
+
+Problem 3 - Return true or false based on if a user is 18+
+💡
+Thing to learn - Type inference
+Function name - isLegal
+solution:
+function isLegal(age: number) {
+    if (age > 18) {
+        return true;
+    } else {
+        return false
+    }
+}
+
+console.log(isLegal(2));
+
+Problem 4 - 
+Create a function that takes another function as input, and runs it after 1 second.
+Code
+function delayedCall(fn: () => void) {
+    setTimeout(fn, 1000);
+}
+
+delayedCall(function() {
+    console.log("hi there");
+})
