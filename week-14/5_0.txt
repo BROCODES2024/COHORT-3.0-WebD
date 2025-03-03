@@ -1,0 +1,185 @@
+Step 6 - Interfaces
+1. What are interfaces
+How can you assign types to objects? For example, a user object that looks like this - 
+const user = {
+	firstName: "harkirat",
+	lastName: "singh",
+	email: "email@gmail.com".
+	age: 21,
+}
+
+To assign a type to the user object, you can use interfaces
+interface User {
+	firstName: string;
+	lastName: string;
+	email: string;
+	age: number;
+}
+
+ 
+Assignment #1 - Create a function isLegal that returns true or false if a user is above 18. It takes a user as an input.
+Solution
+interface User {
+	firstName: string;
+	lastName: string;
+	email: string;
+	age: number;
+}
+
+function isLegal(user: User) {
+    if (user.age > 18) {
+        return true
+    } else {
+        return false;
+    }
+}
+//read below code
+const user: User = {
+  firstName: "harkirat",
+  lastName: "singh",
+  email: "email@gmail.com",
+  age: 21,
+  address: {
+    hosueno: 123,
+    country: "india",
+  },
+};
+interface User {
+  firstName: string;
+  lastName: string;
+  email: string;
+  age: number;
+  address?: {
+    hosueno: number;
+    country: string;
+  };
+}
+function isLegal(user: User) {
+  if (user.age > 18) {
+    return true;
+  } else {
+    return false;
+  }
+}
+//what if we want to make address optional in interface
+// ie below user2 should also work
+//see it works but try removing ? after address in interface
+const user2: User = {
+  firstName: "harkirat",
+  lastName: "singh",
+  email: "email@gmail.com",
+  age: 21,
+};
+
+
+//dont repeat
+interface can access an interface inside it hence we reduce Repetitiveness
+interface Address {
+    city: string;
+    country: string;
+    pincode: number;
+    houseNumber: string;
+};
+
+interface User {
+    name: string;
+    age: number;
+    address: Address;
+}
+
+interface Office {
+    address: Address;
+}
+
+
+Assignment #2 - Create a React component that takes todos as an input and renders them
+💡
+Select typescript when initialising the react project using npm create vite@latest
+Solution
+// Todo.tsx
+interface TodoType {
+  title: string;
+  description: string;
+  done: boolean;
+}
+
+interface TodoInput {
+  todo: TodoType;
+}
+
+function Todo({ todo }: TodoInput) {
+  return <div>
+    <h1>{todo.title}</h1>
+    <h2>{todo.description}</h2>
+    
+  </div>
+}
+
+2. Implementing interfaces
+Interfaces have another special property. You can implement interfaces as a class.
+Let’s say you have an personinterface - 
+interface Person {
+    name: string;
+    age: number;
+    greet(phrase: string): void;
+}
+
+You can create a class which implements this interface.
+class Employee implements Person {
+    name: string;
+    age: number;
+
+    constructor(n: string, a: number) {
+        this.name = n;
+        this.age = a;
+    }
+
+    greet(phrase: string) {
+        console.log(`${phrase} ${this.name}`);
+    }
+}
+
+This is useful since now you can create multiple variants of a person (Manager, CEO …)
+Summary
+You can use interfaces to aggregate data
+You can use interfaces to implement classes from
+ 
+💡
+Abstract classes let you do something similar (not TS related)
+abstract class Shape {
+  abstract name: string;
+
+  abstract calculateArea(): number;
+
+  describe(): void {
+    console.log(`This shape is a ${this.name} with an area of ${this.calculateArea()} units squared.`);
+  }
+}
+
+Rectangle and Circle classes
+class Rectangle extends Shape {
+  name = "Rectangle";
+
+  constructor(public width: number, public height: number) {
+    super();
+  }
+
+  // Implement the abstract method
+  calculateArea(): number {
+    return this.width * this.height;
+  }
+}
+
+// Another subclass implementing the abstract class
+class Circle extends Shape {
+  name = "Circle";
+
+  constructor(public radius: number) {
+    super();
+  }
+
+  // Implement the abstract method
+  calculateArea(): number {
+    return Math.PI * this.radius * this.radius;
+  }
+}

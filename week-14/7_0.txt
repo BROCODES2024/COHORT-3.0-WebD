@@ -1,0 +1,59 @@
+Step 7 - Types
+What are types?
+Very similar to interfaces , types let you aggregate data together.
+type User = {
+	firstName: string;
+	lastName: string;
+	age: number
+}
+
+But they let you do a few other things.
+ 
+1. Unions
+Let’s say you want to print the id of a user, which can be a number or a string.
+💡
+You can not do this using interfaces
+type StringOrNumber = string | number;
+
+function printId(id: StringOrNumber) {
+  console.log(`ID: ${id}`);
+}
+
+printId(101); // ID: 101
+printId("202"); // ID: 202
+
+2. Intersection
+What if you want to create a type that has every property of multiple types/ interfaces
+💡
+You can not do this using interfaces
+type Employee = {
+  name: string;
+  startDate: Date;
+};
+
+type Manager = {
+  name: string;
+  department: string;
+};
+
+type TeamLead = Employee & Manager;
+
+const teamLead: TeamLead = {
+  name: "harkirat",
+  startDate: new Date(),
+  department: "Software developer"
+};
+
+
+
+diff bw type and interfaces
+interface user {
+
+}
+type user2 = {
+
+}
+//its just an equal to 
+also types can do unions and Intersection which interface cant do
+
+look 2nd image in notion

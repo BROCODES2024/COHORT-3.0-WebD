@@ -23,14 +23,15 @@ tsc -b
 Step 5 - Explore the newly generated index.js file
 Notice how there is no typescript code in the javascript file. It’s a plain old js file with no types
  
-Step 7 - Delete a.js
 Step 6 - Try assigning x to a string
 Make sure you convert the const to let
 let x: number = 1;
 x = "harkirat"
 console.log(x);
 
-Step 7 - Try compiling the code again
+Step 7 - Delete a.js
+
+Step 8 - Try compiling the code again
 tsc -b
 Notice all the errors you see in the console. This tells you there are type errors in your codebase.
 Also notice that no index.js is created anymore

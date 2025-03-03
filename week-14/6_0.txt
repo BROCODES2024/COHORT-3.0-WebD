@@ -1,0 +1,67 @@
+objects are derived from class 
+like for example 
+car is a class it has properties like engine,noofdoors,price etc
+but object is like model
+
+ie suppose honda is a car company then wrv is an object
+
+though we can also create random objects
+like:
+const user = {
+	firstName: "harkirat",
+	lastName: "singh",
+	email: "email@gmail.com".
+	age: 21,
+}
+
+
+example for class:
+look at image in notion doc webd week14
+here manager is a class , manager is implementing People
+interface People {
+  name: string;
+  age: number;
+  //   greet: () => string; //this is just a function that returns string
+}
+class Manager implements People {
+  name: string;
+  age: number; //we can extra things but name and age should be there as manager is an implementation of People
+  surname: string;
+  constructor(name: string, age: number, surname: string) {
+    this.name = name;
+    this.age = age;
+    this.surname = surname;
+  }
+}
+
+let user = new Manager("jhon", 30, "william");
+//difference between interfaces and types
+you can implement interfaces as class but cont do that with types
+//difference between abstract class and interface
+both are mostly similar
+
+if a class can implement an interface what is use of abstract class
+abstarct class can have default implementation of an function as well
+
+abstract class User {
+    name: string;
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    abstract greet(): string;
+    hello() {
+        console.log("hi there");
+    }
+}
+
+class Employee extends User {
+    name: string;
+    constructor(name: string) {
+        super(name);
+        this.name = name;
+    }
+    greet() {
+        return "hi " + this.name;
+    }
+}

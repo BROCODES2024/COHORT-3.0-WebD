@@ -1,0 +1,49 @@
+function maxnum(arr: number[]) {
+  let maxi = Math.max(...arr);
+  return maxi;
+}
+const numbers = [1, 2, 3, 4, 100];
+console.log(maxnum(numbers));
+//The spread operator (...) in JavaScript and TypeScript is used to expand an iterable (like an array or object) into individual elements.
+
+/*
+How it works:
+1️⃣ Spreading an array into function arguments
+typescript
+Copy
+Edit
+const numbers = [1, 2, 3, 4, 5];
+console.log(Math.max(...numbers)); // ✅ Correct usage
+Without the spread operator:
+
+typescript
+Copy
+Edit
+console.log(Math.max(numbers)); // ❌ NaN (because Math.max expects individual numbers)
+2️⃣ Creating a new array (copying an array)
+typescript
+Copy
+Edit
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1, 4, 5]; 
+console.log(arr2); // [1, 2, 3, 4, 5]
+3️⃣ Merging arrays
+typescript
+Copy
+Edit
+const a = [1, 2];
+const b = [3, 4];
+const merged = [...a, ...b]; 
+console.log(merged); // [1, 2, 3, 4]
+4️⃣ Spreading an object (copying an object)
+typescript
+Copy
+Edit
+const obj1 = { name: "Alice", age: 25 };
+const obj2 = { ...obj1, city: "New York" }; 
+console.log(obj2); // { name: 'Alice', age: 25, city: 'New York' }
+Summary:
+... expands arrays and objects.
+It makes copying and merging easier.
+Used in function calls, array/object manipulation, and more.
+*/
