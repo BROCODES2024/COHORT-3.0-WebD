@@ -1,0 +1,5 @@
+Go through notion week14
+try to cover:
+enums
+generics
+go through notion week-14-offline

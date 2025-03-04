@@ -1,4 +1,4 @@
-slides: https://projects.100xdevs.com/tracks/6SbPPXGkG8QKFOTW9BmL/ts-8
+https://projects.100xdevs.com/tracks/6SbPPXGkG8QKFOTW9BmL/ts-1
 
 Step 1 - Types of languages
 1. Strongly typed vs loosely typed
