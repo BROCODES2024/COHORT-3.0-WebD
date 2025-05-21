@@ -6,10 +6,11 @@ we dont need react for static websites it just increases bundle size if we use r
 but in case of dynamic its better to use though it increase the bundle size it gives better dev experience
 
 - React is just an easier way to write normal HTML/CSS/JS. It’s a new syntax, that under the hood gets converted to HTML/CSS/JS.
-
+- for dynamic websites these libraries make it easier to do DOM manipulation
 It’s a new syntax, that under the hood gets converted to HTML/CSS/JS
 Just how ChatGPT is an easier way to write code, React is an easier way to write HTML/CSS
-Notes: 
+
+problem with DOM manipulation is as the app scales it gets harder and harder to write code but with react its easier
 
 Notes: 
 

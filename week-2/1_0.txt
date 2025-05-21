@@ -6,9 +6,6 @@ Here’s a structured list of how JavaScript executes different types of tasks, 
 1️⃣ Synchronous Code (Highest Priority)
 ✅ Executed immediately in order, blocking further execution.
 
-js
-Copy
-Edit
 console.log("start");
 console.log("end");
 ⏳ Execution Order:

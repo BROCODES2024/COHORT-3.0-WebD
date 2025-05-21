@@ -1,0 +1,12 @@
+body {
+  font-size: xx-large;
+  margin: 100px;
+  padding: 100px;
+  border: 100px;
+}
+.highlight {
+  background-color: yellow;
+}
+#main-banner {
+  background-color: red;
+}
