@@ -1,76 +1,54 @@
-https://projects.100xdevs.com/tracks/async-js-1/Asynchronous-Javascript--Callbacks-and-more-1
-https://projects.100xdevs.com/tracks/promises-async-await/Promises-and-async--await-1
+**Execution Order of Different JavaScript Tasks**
 
-Execution Order of Different JavaScript Tasks
 Here’s a structured list of how JavaScript executes different types of tasks, in order of priority:
-1️⃣ Synchronous Code (Highest Priority)
-✅ Executed immediately in order, blocking further execution.
 
+**1️⃣ Synchronous Code (Highest Priority)**  
+✅ Executed immediately in order, blocking further execution.  
 console.log("start");
 console.log("end");
-⏳ Execution Order:
 
-sql
-Copy
-Edit
+⏳ **Execution Order**:  
 start
 end
-2️⃣ Microtask Queue (Executed After Synchronous Code)
-✅ Includes:
 
-Promise.then(), Promise.catch(), Promise.finally()
-queueMicrotask()
-MutationObserver
-js
-Copy
-Edit
+**2️⃣ Microtask Queue (Executed After Synchronous Code)**  
+✅ Includes:  
+- `Promise.then()`, `Promise.catch()`, `Promise.finally()`  
+- `queueMicrotask()`  
+- `MutationObserver`  
+
 Promise.resolve().then(() => console.log("promise"));
 queueMicrotask(() => console.log("microtask"));
-⏳ Execution Order (after sync code):
 
-cpp
-Copy
-Edit
+⏳ **Execution Order (after sync code)**:  
 promise
 microtask
-3️⃣ Macrotask Queue (Executed After Microtasks)
-✅ Includes:
 
-setTimeout(), setInterval()
-setImmediate() (Node.js)
-requestAnimationFrame()
-I/O operations (file read/write, network requests)
-js
-Copy
-Edit
+**3️⃣ Macrotask Queue (Executed After Microtasks)**  
+✅ Includes:  
+- `setTimeout()`, `setInterval()`  
+- `setImmediate()` (Node.js)  
+- `requestAnimationFrame()`  
+- I/O operations (file read/write, network requests)  
+
 setTimeout(() => console.log("setTimeout"), 0);
 setInterval(() => console.log("setInterval"), 1000);
-⏳ Execution Order (after microtasks):
 
-javascript
-Copy
-Edit
+⏳ **Execution Order (after microtasks)**:  
 setTimeout
 (setInterval keeps repeating every 1s)
-4️⃣ UI Rendering (Executed After Macrotasks)
-✅ Includes:
 
-Browser paints UI updates
-requestAnimationFrame()
-js
-Copy
-Edit
+**4️⃣ UI Rendering (Executed After Macrotasks)**  
+✅ Includes:  
+- Browser paints UI updates  
+- `requestAnimationFrame()`  
+
 requestAnimationFrame(() => console.log("render"));
-⏳ Execution Order (after macrotasks):
 
-nginx
-Copy
-Edit
+⏳ **Execution Order (after macrotasks)**:  
 render
-Full Example and Execution Order
-js
-Copy
-Edit
+
+**Full Example and Execution Order**  
 console.log("start");
 
 setTimeout(() => console.log("setTimeout"), 0);
@@ -82,21 +60,20 @@ Promise.resolve()
 queueMicrotask(() => console.log("microtask"));
 
 console.log("end");
-⏳ Final Execution Order:
 
-arduino
-Copy
-Edit
+⏳ **Final Execution Order**:  
 start      // Synchronous
 end        // Synchronous
 promise1   // Microtask
 promise2   // Microtask
 microtask  // Microtask
 setTimeout // Macrotask (executed last)
-📌 Final Summary
-1️⃣ Synchronous Code (executes first).
-2️⃣ Microtasks (Promise.then, queueMicrotask) (executed next).
-3️⃣ Macrotasks (setTimeout, setInterval) (executed last).
-4️⃣ UI Rendering (requestAnimationFrame) (after all tasks).
 
-✅ Microtasks always execute before Macrotasks, even if both are scheduled at the same time!
+**📌 Final Summary**  
+1️⃣ **Synchronous Code**: Executes first.  
+2️⃣ **Microtasks** (`Promise.then`, `queueMicrotask`): Executed next.  
+3️⃣ **Macrotasks** (`setTimeout`, `setInterval`): Executed last.  
+4️⃣ **UI Rendering** (`requestAnimationFrame`): After all tasks.  
+
+✅ **Microtasks always execute before Macrotasks, even if both are scheduled at the same time!**
+
