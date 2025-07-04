@@ -25,8 +25,39 @@ console.log(ans3);
 
 const fs = require("fs");
 
-const contents = fs.readFileSync("./week-2/a.txt", "utf-8");
+const contents = fs.readFileSync("./a.txt", "utf-8");
 console.log(contents);
 
-const contents2 = fs.readFileSync("./week-2/1_0.txt", "utf-8");
+const contents2 = fs.readFileSync("./1_0.txt", "utf-8");
 console.log(contents2);
+
+fs.readFile("./a.txt", "utf-8", (err, data) => {
+  if (err) {
+    console.error("Error reading file:", err);
+    return;
+  }
+  console.log(data);
+});
+
+function sum(a, b) {
+  return a + b;
+}
+function product(a, b) {
+  return a * b;
+}
+function divison(a,b){
+  return a / b;
+}
+function subtraction(a, b) {
+  return a - b;
+}   
+function dooperation(a,b,operation){
+  return operation(a, b);
+}
+console.log(dooperation(10, 20, sum));
+
+function run(){
+  console.log("i will run after 5 seconds");
+}
+setTimeout(run, 5000);
+console.log("i will run immediately");
