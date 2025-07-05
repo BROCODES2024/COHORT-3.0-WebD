@@ -45,18 +45,18 @@ function sum(a, b) {
 function product(a, b) {
   return a * b;
 }
-function divison(a,b){
+function divison(a, b) {
   return a / b;
 }
 function subtraction(a, b) {
   return a - b;
-}   
-function dooperation(a,b,operation){
+}
+function dooperation(a, b, operation) {
   return operation(a, b);
 }
 console.log(dooperation(10, 20, sum));
 
-function run(){
+function run() {
   console.log("i will run after 5 seconds");
 }
 setTimeout(run, 5000);
