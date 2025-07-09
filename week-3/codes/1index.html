@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM Demo</title>
+  </head>
+  <body>
+    <h1>My TODO List</h1>
+
+    <h4>Assignment 1</h4>
+    <h4>Assignment 2</h4>
+
+    <div id="todo-1">
+      <h4>1. Take class</h4>
+      <button onclick="deleteTodo(1)">delete</button>
+    </div>
+
+    <h2>Todo 1</h2>
+    <h2>Todo 2</h2>
+    <h2>Todo 3</h2>
+
+    <button onclick="deleteRandomTodo()">Delete todo!</button>
+    <br />
+    <input id="inp" type="text" />
+    <button onclick="addTodo()">Add Todo</button>
+
+    <div id="todos"></div>
+
+    <script src="1script.js"></script>
+  </body>
+</html>
