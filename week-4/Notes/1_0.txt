@@ -1,1 +1,5 @@
 slides: https://petal-estimate-4e9.notion.site/Node-js-Bun-and-JS-runtimes-a09a41ccd61c4f498e55750c9a1c9b34
+
+Never push node_modules, push package.json instead thats sufficient to install the dependencies
+
+if we use ^in version in package.json then different people different developer gets different code
