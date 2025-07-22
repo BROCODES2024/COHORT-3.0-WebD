@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BG Color Changer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Background Color Changer</h1>
+
+      <div class="color-panel" id="color-panel">
+        <button class="color-btn" data-color="red"></button>
+        <button class="color-btn" data-color="limegreen"></button>
+        <button class="color-btn" data-color="dodgerblue"></button>
+        <button class="color-btn" data-color="gold"></button>
+        <button class="color-btn" data-color="rebeccapurple"></button>
+      </div>
+
+      <div class="custom-color-creator">
+        <input
+          type="text"
+          id="custom-color-input"
+          placeholder="Enter a color (e.g., #ff6347)"
+        />
+        <button id="add-color-btn">Add Color</button>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

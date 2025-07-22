@@ -1,0 +1,84 @@
+/* Basic body styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+header h1 {
+  color: #e4000f; /* Pokémon red */
+  text-shadow: 2px 2px #3b4cca; /* Pokémon blue */
+}
+
+/* Form styling */
+#pokemon-form {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+#pokemon-form input,
+#pokemon-form select,
+#pokemon-form button {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+#pokemon-form button {
+  background-color: #3b4cca;
+  color: white;
+  cursor: pointer;
+  border-color: #3b4cca;
+}
+
+#pokemon-form button:hover {
+  background-color: #2a3aa1;
+}
+
+/* This is the main container for our cards */
+#pokemon-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Styling for each individual Pokémon card */
+.pokemon-card {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 200px;
+  transition: transform 0.2s;
+}
+
+.pokemon-card:hover {
+  transform: scale(1.05);
+}
+
+.pokemon-card img {
+  width: 150px;
+  height: 150px;
+}
+
+.pokemon-card h2 {
+  margin: 10px 0 5px;
+  text-transform: capitalize;
+}
+
+.pokemon-card .type {
+  font-weight: bold;
+  color: #666;
+}
+
+/* Utility class to hide the loading message */
+.hidden {
+  display: none;
+}

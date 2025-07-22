@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Set character encoding and viewport for responsive design -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokémon Card Gallery</title>
+    <!-- Link to external CSS for styling -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Page header -->
+    <header>
+      <h1>Pokémon Card Finder</h1>
+    </header>
+
+    <!-- Form for user to select number and category of Pokémon -->
+    <form id="pokemon-form">
+      <!-- Input for number of Pokémon to fetch (between 1 and 50) -->
+      <input
+        type="number"
+        id="num-pokemon"
+        value="5"
+        min="1"
+        max="100"
+        required
+      />
+      <!-- Dropdown to select Pokémon category/type -->
+      <select id="pokemon-category" required>
+        <option value="fire">Fire 🔥</option>
+        <option value="water">Water 💧</option>
+        <option value="grass">Grass 🌿</option>
+        <option value="electric">Electric ⚡</option>
+        <option value="psychic">Psychic 🔮</option>
+        <option value="ice">Ice ❄️</option>
+        <option value="dragon">Dragon 🐲</option>
+        <option value="ghost">Ghost 👻</option>
+        <option value="rock">Rock 🪨</option>
+      </select>
+      <!-- Button to submit the form and fetch Pokémon -->
+      <button type="submit">Get Pokémon!</button>
+    </form>
+
+    <!-- Loading indicator, hidden by default -->
+    <div id="loading" class="hidden">Fetching Pokémon...</div>
+
+    <!-- Main container where Pokémon cards will be displayed -->
+    <main id="pokemon-container"></main>
+
+    <!-- Link to external JavaScript for interactivity -->
+    <script src="script.js"></script>
+  </body>
+</html>
