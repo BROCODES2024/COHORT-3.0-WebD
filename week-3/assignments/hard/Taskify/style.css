@@ -1,0 +1,221 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
+
+:root {
+  --board-bg: #f7f8fc;
+  --column-bg: #f7f8fc;
+  --card-bg: #ffffff;
+  --text-color: #172b4d;
+  --text-light: #6b778c;
+  --border-color: #dfe1e6;
+  --shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  --priority-low: #2ecc71; /* Green */
+  --priority-medium: #f39c12; /* Orange */
+  --priority-urgent: #e74c3c; /* Red */
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--board-bg);
+  color: var(--text-color);
+  margin: 0;
+  padding: 20px;
+  overflow-x: auto; /* Allow horizontal scrolling on small screens */
+}
+
+.board-container {
+  display: flex;
+  gap: 20px;
+  min-height: calc(100vh - 40px);
+}
+
+.task-column {
+  flex: 1;
+  min-width: 280px;
+  max-width: 300px;
+  background-color: var(--column-bg);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 5px;
+}
+
+.column-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.column-header i {
+  color: var(--text-light);
+  cursor: pointer;
+}
+
+.tasks-container {
+  flex-grow: 1;
+  min-height: 100px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+/* Style for when an item is dragged over a column */
+.tasks-container.drag-over {
+  background-color: #e9eaf0;
+  border: 2px dashed var(--border-color);
+}
+
+.task-card {
+  background-color: var(--card-bg);
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: var(--shadow);
+  cursor: grab;
+  transition: box-shadow 0.2s;
+}
+
+/* Style for the card being dragged */
+.task-card.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.task-card h4 {
+  margin: 0 0 10px 0;
+}
+
+.task-card p {
+  margin: 0 0 15px 0;
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.task-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.task-priority {
+  padding: 3px 10px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 500;
+}
+
+.task-priority.low {
+  background-color: var(--priority-low);
+}
+.task-priority.medium {
+  background-color: var(--priority-medium);
+}
+.task-priority.urgent {
+  background-color: var(--priority-urgent);
+}
+
+.add-new-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background-color: #333;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: auto; /* Pushes the button to the bottom */
+}
+.add-new-btn:hover {
+  background-color: #555;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.3s, opacity 0.3s;
+}
+
+.modal-overlay.visible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+#add-task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#add-task-form label {
+  font-weight: 500;
+}
+
+#add-task-form input,
+#add-task-form textarea,
+#add-task-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.form-buttons button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.form-buttons button[type="submit"] {
+  background-color: #0052cc;
+  color: white;
+}
+
+.form-buttons button[type="button"] {
+  background-color: #f4f5f7;
+  color: var(--text-color);
+}
