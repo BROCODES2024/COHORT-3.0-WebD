@@ -8,6 +8,9 @@ const users = [
       {
         healthy: false,
       },
+      {
+        healthy: true,
+      },
     ],
   },
 ];
@@ -32,7 +35,7 @@ app.get("/", function (req, res) {
 });
 
 app.post("/", function (req, res) {
-  const isHealthy = req.body.isHealthy;
+  const isHealthy = req.body.isHealthy; //taking info whether the kidney is healthy or not
   users[0].kidneys.push({
     healthy: isHealthy,
   });
@@ -46,7 +49,7 @@ app.put("/", function (req, res) {
   for (let i = 0; i < users[0].kidneys.length; i++) {
     users[0].kidneys[i].healthy = true;
   }
-  res.json({});
+  res.json({}); // Respond with an empty object
 });
 
 // removing all the unhealhty kidneys

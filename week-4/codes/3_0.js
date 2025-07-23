@@ -18,7 +18,7 @@ app.get("/ride1", isoldenoughmw, function (req, res) {
 });
 app.get("/ride2", isoldenoughmw, function (req, res) {
   res.json({
-    msg: "welcome to ride 1",
+    msg: "welcome to ride 2",
   });
 });
 app.listen(3000);
